@@ -1,0 +1,61 @@
+@model Pc1Laboratorio.Models.Registro;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+
+<body> 
+    <marquee SCROLLAMOUNT=18 width=500 direction=left><h1 style="color:#FF8C00;font-family:Comic Sans MS;font-size:100px">
+    Bienvenido  
+    </h1></marquee>
+<br>
+   <form asp-controller="RegistroAlumno" asp-action="registrar">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class ="col-sm-6 col-sm-offset-1">
+                <b><label asp-for="name" class="control-label"></label></b>
+                <input asp-for="name" class="form-control"/>
+                <span asp-validation-for="name" class="text-danger" ></span>
+            </div>
+
+            <br>
+
+            <div class ="col-sm-6 col-sm-offset-1">
+                <b><label asp-for="LastName" class="control-label"></label></b>
+                <input asp-for="LastName" class="form-control"/>
+                <span asp-validation-for="LastName" class="text-danger" ></span>
+            </div>
+
+            <br>
+
+            <div class="form-group">
+                <b><label >Course</label></b>
+                @for (int i = 0; i < Model.Courses.Count; i++)
+                {
+                    <div> 
+                        @Html.HiddenFor(model => Model.Courses[i].type) 
+                        @Html.CheckBoxFor(model => Model.Courses[i].active)
+                        @Html.LabelFor(model => Model.Courses[i].active, Model.Courses[i].type)
+                    </div> 
+                }
+
+            </div>
+
+            <br>
+
+        <button type="submit" class="btn btn-primary" style="color:#0000FF" >Enviar</button>
+   </form>
+
+   
+
+   
+</body>
+</html>
